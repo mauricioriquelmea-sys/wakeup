@@ -1,0 +1,27 @@
+name: Structural Lab Keep-Alive
+
+on:
+  schedule:
+    # Se ejecuta cada 6 horas para evitar que Streamlit se duerma
+    - cron: '0 */6 * * *'
+  workflow_dispatch: # Permite ejecución manual para pruebas
+
+jobs:
+  ping-apps:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v3
+
+      - name: Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      - name: Ejecutar despertador de Apps
+        run: python wake_up.py
