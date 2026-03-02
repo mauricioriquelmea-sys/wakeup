@@ -19,21 +19,14 @@ apps_urls = [
 ]
 
 def wake_up():
-    print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] Iniciando secuencia de activación...")
+    print("Despertando Structural Lab...")
     for url in apps_urls:
         try:
-            # Realizamos una petición GET con un timeout corto
-            response = requests.get(url, timeout=10)
-            if response.status_code == 200:
-                print(f"✅ ACTIVA: {url}")
-            else:
-                print(f"⚠️ STATUS {response.status_code}: {url}")
+            # Importante: poner un timeout para que no se quede pegado
+            r = requests.get(url, timeout=15) 
+            print(f"Status {r.status_code} para {url}")
         except Exception as e:
-            print(f"❌ ERROR en {url}: {e}")
+            print(f"Error en {url}: {e}")
 
 if __name__ == "__main__":
-    # Ejecuta la activación una vez al día o cada 12 horas
-    while True:
-        wake_up()
-        print("Esperando 12 horas para la próxima ronda...")
-        time.sleep(43200) # 12 horas en segundos
+    wake_up() # Se ejecuta UNA VEZ y termina.
