@@ -17,6 +17,7 @@ apps_urls = [
     "https://www.mauricioriquelme.com/ventana"
     "https://www.mauricioriquelme.com/quimico"
     "https://www.mauricioriquelme.com/expansion"
+    "https://www.mauricioriquelme.com/perno_tornillo"
     "https://www.mauricioriquelme.com/topgal"
 ]
 
