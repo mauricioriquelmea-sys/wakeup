@@ -1,13 +1,12 @@
-name: Structural Lab Keep-Alive
+name: Structural Lab Keep-Alive PRO
 
 on:
   schedule:
-    # Se ejecuta cada 6 horas para evitar que Streamlit se duerma
     - cron: '0 */6 * * *'
-  workflow_dispatch: # Permite ejecución manual para pruebas
+  workflow_dispatch:
 
 jobs:
-  ping-apps:
+  wake-up-browser:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout del código
@@ -18,10 +17,40 @@ jobs:
         with:
           python-version: '3.9'
 
-      - name: Instalar dependencias
+      - name: Instalar Playwright
         run: |
           python -m pip install --upgrade pip
-          pip install requests
+          pip install playwright
+          playwright install chromium
 
-      - name: Ejecutar despertador de Apps
-        run: python wake_up.py
+      - name: Despertar Apps con Navegador Real
+        run: |
+          python -c "
+          from playwright.sync_api import sync_playwright
+          import time
+
+          # MODIFICA ESTA LISTA CON TUS URLS DE STREAMLIT (TERMINADAS EN .streamlit.app)
+          apps = [
+              'https://viento-nch432.streamlit.app/',
+              'https://topgal-dvp.streamlit.app/',
+              'https://silicona-estructural.streamlit.app/',
+              'https://nieve-nch431.streamlit.app/',
+              'https://sismo-nch3357.streamlit.app/',
+              'https://mullion-design.streamlit.app/'
+          ]
+
+          with sync_playwright() as p:
+              browser = p.chromium.launch(headless=True)
+              for url in apps:
+                  try:
+                      page = browser.new_page()
+                      print(f'Simulando visita de ingeniero en: {url}')
+                      # Espera hasta 60s a que la app cargue y la red esté tranquila
+                      page.goto(url, wait_until='networkidle', timeout=60000)
+                      time.sleep(10) # Damos 10s extra para que el motor de Python despierte
+                      print(f'✅ {url} está operativa.')
+                      page.close()
+                  except Exception as e:
+                      print(f'⚠️ No se pudo cargar {url} (puede estar despertando): {e}')
+              browser.close()
+          "
