@@ -1,35 +1,32 @@
 import requests
-import time
-from datetime import datetime
 
-# Listado de tus aplicaciones en Structural Lab
+# Listado corregido con comas y URLs verificadas
 apps_urls = [
-    "https://www.mauricioriquelme.com/wind",
-    "https://www.mauricioriquelme.com/techo",
-    "https://www.mauricioriquelme.com/nieve",
-    "https://www.mauricioriquelme.com/sismo",
-    "https://www.mauricioriquelme.com/mullion",
-    "https://www.mauricioriquelme.com/travesanos",
-    "https://www.mauricioriquelme.com/silicona",
-    "https://www.mauricioriquelme.com/cinta",
-    "https://www.mauricioriquelme.com/unidades",
-    "https://www.mauricioriquelme.com/torque",
-    "https://www.mauricioriquelme.com/ventana"
-    "https://www.mauricioriquelme.com/quimico"
-    "https://www.mauricioriquelme.com/expansion"
-    "https://www.mauricioriquelme.com/perno_tornillo"
-    "https://www.mauricioriquelme.com/topgal"
+    "https://viento-nch432.streamlit.app/",
+    "https://sobrecarga-techo-nch1537.streamlit.app/",
+    "https://nieve-nch431.streamlit.app/",
+    "https://sismo-secundario.streamlit.app/",
+    "https://mullion.streamlit.app/",
+    "https://travesanos.streamlit.app/",
+    "https://siliconaestructural.streamlit.app/",
+    "https://cinta3m.streamlit.app/",
+    "https://torque.streamlit.app/",
+    "https://quimico.streamlit.app/",
+    "https://expansion.streamlit.app/",
+    "https://perno-tornillo.streamlit.app/",
+    "https://engine-topgal.streamlit.app/"
 ]
 
 def wake_up():
-    print("Despertando Structural Lab...")
+    print(f"Despertando Structural Lab...")
     for url in apps_urls:
         try:
-            # Importante: poner un timeout para que no se quede pegado
-            r = requests.get(url, timeout=15) 
+            # Usamos un User-Agent para que Streamlit no bloquee la petición
+            headers = {'User-Agent': 'Mozilla/5.0'}
+            r = requests.get(url, headers=headers, timeout=20) 
             print(f"Status {r.status_code} para {url}")
         except Exception as e:
             print(f"Error en {url}: {e}")
 
 if __name__ == "__main__":
-    wake_up() # Se ejecuta UNA VEZ y termina.
+    wake_up()
