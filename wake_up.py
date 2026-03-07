@@ -20,19 +20,24 @@ apps_urls = [
 ]
 
 def wake_up():
-    print(f"--- Iniciando despertar de Structural Lab: {time.strftime('%Y-%m-%d %H:%M:%S')} ---")
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-    }
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'}
+    print(f"--- Iniciando Ciclo de Despertar: {time.strftime('%H:%M:%S')} ---")
     
     for url in apps_urls:
         try:
-            # Enviamos la petición. Si la app está dormida, esto la activará.
-            r = requests.get(url, headers=headers, timeout=25) 
-            print(f"✅ Status {r.status_code} para: {url}")
+            # Intento 1: El "Pellizco" para que despierte
+            r = requests.get(url, headers=headers, timeout=30)
+            print(f"Attempt 1: Status {r.status_code} para {url}")
+            
+            # Si Streamlit está cargando (status 200 pero página de inicio), 
+            # esperamos 10 segundos y damos un segundo pulso
+            if r.status_code == 200:
+                time.sleep(10)
+                requests.get(url, headers=headers, timeout=20)
+                print(f"✅ App Confirmada: {url}")
+                
         except Exception as e:
             print(f"❌ Error en {url}: {e}")
-    print("--- Proceso finalizado ---")
-
+            
 if __name__ == "__main__":
     wake_up()
