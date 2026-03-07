@@ -1,12 +1,13 @@
-name: Structural Lab Keep-Alive PRO
+name: SL Keep Alive Bot
 
 on:
   schedule:
-    - cron: '0 */6 * * *'
-  workflow_dispatch:
+    # Se ejecuta cada 15 minutos, las 24 horas, los 7 días
+    - cron: '*/15 * * * *'
+  workflow_dispatch: # Esto permite que tú lo actives manualmente con un botón
 
 jobs:
-  wake-up-browser:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout del código
@@ -17,40 +18,8 @@ jobs:
         with:
           python-version: '3.9'
 
-      - name: Instalar Playwright
-        run: |
-          python -m pip install --upgrade pip
-          pip install playwright
-          playwright install chromium
+      - name: Instalar dependencias
+        run: pip install requests
 
-      - name: Despertar Apps con Navegador Real
-        run: |
-          python -c "
-          from playwright.sync_api import sync_playwright
-          import time
-
-          # MODIFICA ESTA LISTA CON TUS URLS DE STREAMLIT (TERMINADAS EN .streamlit.app)
-          apps = [
-              'https://viento-nch432.streamlit.app/',
-              'https://topgal-dvp.streamlit.app/',
-              'https://silicona-estructural.streamlit.app/',
-              'https://nieve-nch431.streamlit.app/',
-              'https://sismo-nch3357.streamlit.app/',
-              'https://mullion-design.streamlit.app/'
-          ]
-
-          with sync_playwright() as p:
-              browser = p.chromium.launch(headless=True)
-              for url in apps:
-                  try:
-                      page = browser.new_page()
-                      print(f'Simulando visita de ingeniero en: {url}')
-                      # Espera hasta 60s a que la app cargue y la red esté tranquila
-                      page.goto(url, wait_until='networkidle', timeout=60000)
-                      time.sleep(10) # Damos 10s extra para que el motor de Python despierte
-                      print(f'✅ {url} está operativa.')
-                      page.close()
-                  except Exception as e:
-                      print(f'⚠️ No se pudo cargar {url} (puede estar despertando): {e}')
-              browser.close()
-          "
+      - name: Ejecutar script de despertar
+        run: python wake_up.py
