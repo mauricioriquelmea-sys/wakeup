@@ -3,21 +3,20 @@ import time
 
 # Listado de aplicaciones de Structural Lab (URLs de producción)
 apps_urls = [
-    "https://viento-nch432.streamlit.app/",
-    "https://sobrecarga-techo-nch1537.streamlit.app/",
-    "https://nieve-nch431.streamlit.app/",
-    "https://sismo-secundario.streamlit.app/",
-    "https://mullion.streamlit.app/",
-    "https://travesanos.streamlit.app/",
-    "https://siliconaestructural.streamlit.app/",
-    "https://cinta3m.streamlit.app/",
-    "https://torque.streamlit.app/",
-    "https://quimico.streamlit.app/",
-    "https://expansion.streamlit.app/",
-    "https://perno-tornillo.streamlit.app/",
-    "https://engine-topgal.streamlit.app/",
-    "https://ventana-nch3532.streamlit.app/",
-    "https://unidades-ingenieria.streamlit.app/"
+    "https://cinta3m-wnepapp6esbay9pzmy8dgqi.streamlit.app/",
+    "https://engine-topgal-kqziwaj4vqugpluyepzban.streamlit.app/",
+    "https://expansion-upr2xinenp8sosay8zmqud.streamlit.app/",
+    "https://mullion-atkbmf2cnuqksoxyt8izct.streamlit.app/",
+    "https://5m88qekh7gcrydaqy7x6xg.streamlit.app/",
+    "https://pernotornillo-dfxkvxnfnurkgzmnaknsx6.streamlit.app/",
+    "https://quimico-2pbzdm3zby4da8kzka8nhm.streamlit.app/",
+    "https://m9plmxftfpszdjvacinftg.streamlit.app/",
+    "https://bjtx5s2rdy5ekuokhjl8v9.streamlit.app/",
+    "https://torque-slfubklryxkgpwanza9x3p.streamlit.app/",
+    "hhttps://travesano-eusssrykqfvpyngtr9vzpv.streamlit.app/",
+    "https://unidades-wehz8ayjfpy6uxlzvf2fb9.streamlit.app/",
+    "hhttps://ventana-bkswzb7jhr4w8crprwwjb9.streamlit.app/",
+    "https://mauricioriquelmea-sys-windload-viento-nch432-lzwdzg.streamlit.app/"
 ]
 
 def wake_up():
