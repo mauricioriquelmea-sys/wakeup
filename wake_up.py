@@ -20,7 +20,9 @@ APPS_URLS = [
     "https://mauricioriquelmea-sys-windload-viento-nch432-lzwdzg.streamlit.app/",
     # Sobrecarga de Uso
     "https://m9plmxftfpszdjvacinftg.streamlit.app/",
-    # Nieve / Sismo Secundario
+    # Nieve 
+    "https://5m88qekh7gcrydaqy7x6xg.streamlit.app/"
+    # Sismo Secundario
     "https://bjtx5s2rdy5ekuokhjl8v9.streamlit.app/",
     # Mullion (Montante)
     "https://mullion-atkbmf2cnuqksoxyt8izct.streamlit.app/",
@@ -50,8 +52,6 @@ APPS_URLS = [
     "https://jexexkgjqv5hoiys9jx4it.streamlit.app/",
      # muro de contencion
     "https://murocontencion-jsfrrr5jqijr3kqnmjpadz.streamlit.app/",
-
-
 ]
 
 # ──────────────────────────────────────────────
