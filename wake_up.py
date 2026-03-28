@@ -11,7 +11,8 @@ from playwright.async_api import async_playwright, TimeoutError as PlaywrightTim
 APPS_URLS = [
     ("Viento NCh432",        "https://mauricioriquelmea-sys-windload-viento-nch432-lzwdzg.streamlit.app/"),
     ("Sobrecarga de Uso",    "https://m9plmxftfpszdjvacinftg.streamlit.app/"),
-    ("Nieve / Sismo Sec.",   "https://bjtx5s2rdy5ekuokhjl8v9.streamlit.app/"),
+    ("Nieve",                "https://bjtx5s2rdy5ekuokhjl8v9.streamlit.app/"),
+    ("Sismo",                "https://m9plmxftfpszdjvacinftg/"),
     ("Mullion",              "https://mullion-atkbmf2cnuqksoxyt8izct.streamlit.app/"),
     ("Travesaño",            "https://travesano-eusssrykqfvpyngtr9vzpv.streamlit.app/"),
     ("Silicona Estructural", "https://5m88qekh7gcrydaqy7x6xg.streamlit.app/"),
