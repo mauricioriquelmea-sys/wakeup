@@ -36,6 +36,8 @@ APPS_URLS = [
     "https://quimico-2pbzdm3zby4da8kzka8nhm.streamlit.app/",
     # Expansión (Anclaje)
     "https://expansion-upr2xinenp8sosay8zmqud.streamlit.app/",
+    # SBT
+    "https://7qmsvcrwsafxzgp8icsncu.streamlit.app/",
     # Perno / Tornillo
     "https://pernotornillo-dfxkvxnfnurkgzmnaknsx6.streamlit.app/",
     # Engine TopGal
