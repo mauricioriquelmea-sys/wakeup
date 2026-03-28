@@ -20,9 +20,7 @@ APPS_URLS = [
     "https://mauricioriquelmea-sys-windload-viento-nch432-lzwdzg.streamlit.app/",
     # Sobrecarga de Uso
     "https://m9plmxftfpszdjvacinftg.streamlit.app/",
-    # Nieve 
-    "https://5m88qekh7gcrydaqy7x6xg.streamlit.app/"
-    # Sismo Secundario
+    # Nieve / Sismo Secundario
     "https://bjtx5s2rdy5ekuokhjl8v9.streamlit.app/",
     # Mullion (Montante)
     "https://mullion-atkbmf2cnuqksoxyt8izct.streamlit.app/",
@@ -38,8 +36,6 @@ APPS_URLS = [
     "https://quimico-2pbzdm3zby4da8kzka8nhm.streamlit.app/",
     # Expansión (Anclaje)
     "https://expansion-upr2xinenp8sosay8zmqud.streamlit.app/",
-    # SBT
-    "https://7qmsvcrwsafxzgp8icsncu.streamlit.app/",
     # Perno / Tornillo
     "https://pernotornillo-dfxkvxnfnurkgzmnaknsx6.streamlit.app/",
     # Engine TopGal
@@ -48,10 +44,6 @@ APPS_URLS = [
     "https://ventana-bkswzb7jhr4w8crprwwjb9.streamlit.app/",
     # Unidades
     "https://unidades-wehz8ayjfpy6uxlzvf2fb9.streamlit.app/",
-     #grua
-    "https://jexexkgjqv5hoiys9jx4it.streamlit.app/",
-     # muro de contencion
-    "https://murocontencion-jsfrrr5jqijr3kqnmjpadz.streamlit.app/",
 ]
 
 # ──────────────────────────────────────────────
