@@ -53,15 +53,30 @@ async def wake_single(browser, idx, total, name, url):
 
         if is_sleeping:
             print(f"       💤 Dormida — despertando...")
+            clicked = False
+            # Intento 1: botón dentro de iframe
             try:
-                btn = page.locator("text=Yes, get this app back up!")
-                await btn.click(timeout=10_000)
+                frame = page.frame_locator("iframe").first
+                btn = frame.locator("text=Yes, get this app back up!")
+                await btn.click(timeout=15_000)
+                clicked = True
+                print(f"       🔔 Botón clickeado (iframe)")
             except Exception:
                 pass
+            # Intento 2: botón directo en la página
+            if not clicked:
+                try:
+                    await page.click("text=Yes, get this app back up!", timeout=10_000)
+                    clicked = True
+                    print(f"       🔔 Botón clickeado (página)")
+                except Exception:
+                    pass
+            if not clicked:
+                print(f"       ⚠️  Botón no encontrado — señal de visita enviada")
             await page.wait_for_timeout(WAKE_WAIT_MS)
             content2 = await page.content()
             if any(s in content2 for s in SLEEPING_SIGNALS):
-                print(f"       ⚠️  Aún cargando — señal enviada")
+                print(f"       ⚠️  Aún cargando — esperar próximo ciclo")
             else:
                 print(f"       ✅ ACTIVA")
         else:
