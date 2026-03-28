@@ -1,25 +1,52 @@
+# ══════════════════════════════════════════════════════════════
+#  Structural Lab — Streamlit Keep-Alive (Playwright)
+#  Archivo : .github/workflows/main.yml
+#  Disparo : Cron cada 14 min + ejecución manual
+# ══════════════════════════════════════════════════════════════
+
 name: SL Keep Alive Bot
 
 on:
   schedule:
-    # Se ejecuta cada 15 minutos, las 24 horas, los 7 días
-    - cron: '*/15 * * * *'
-  workflow_dispatch: # Esto permite que tú lo actives manualmente con un botón
+    - cron: "*/14 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   build:
+    name: Despertar Apps Streamlit
     runs-on: ubuntu-latest
+    timeout-minutes: 20
+
     steps:
       - name: Checkout del código
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Configurar Python
-        uses: actions/setup-python@v4
+      - name: Configurar Python 3.11
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.9'
+          python-version: "3.11"
+          cache: "pip"
 
       - name: Instalar dependencias
-        run: pip install requests
+        run: |
+          python -m pip install --upgrade pip
+          pip install playwright
+
+      - name: Instalar Chromium headless
+        run: python -m playwright install chromium --with-deps
 
       - name: Ejecutar script de despertar
         run: python wake_up.py
+        env:
+          PYTHONUNBUFFERED: "1"
+
+      - name: Reporte Final
+        if: always()
+        run: |
+          echo "────────────────────────────────────────"
+          echo "  Ciclo completado: $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+          echo "  Status: ${{ job.status }}"
+          echo "────────────────────────────────────────"
