@@ -1,6 +1,5 @@
 """
 wake_up.py — Structural Lab | Keep-Alive con Playwright
-Autor: Sistema DevOps Structural Lab
 """
 
 import asyncio
@@ -9,54 +8,32 @@ import random
 from datetime import datetime
 from playwright.async_api import async_playwright, TimeoutError as PlaywrightTimeout
 
-
-# ──────────────────────────────────────────────
-#  LISTADO CORREGIDO DE APLICACIONES
-#  Structural Lab — Portafolio de Ingeniería
-# ──────────────────────────────────────────────
 APPS_URLS = [
-    # Cargas de Viento
-    "https://mauricioriquelmea-sys-windload-viento-nch432-lzwdzg.streamlit.app/",
-    # Sobrecarga de Uso
-    "https://m9plmxftfpszdjvacinftg.streamlit.app/",
-    # Nieve / Sismo Secundario
-    "https://bjtx5s2rdy5ekuokhjl8v9.streamlit.app/",
-    # Mullion (Montante)
-    "https://mullion-atkbmf2cnuqksoxyt8izct.streamlit.app/",
-    # Travesaño
-    "https://travesano-eusssrykqfvpyngtr9vzpv.streamlit.app/",
-    # Silicona Estructural
-    "https://5m88qekh7gcrydaqy7x6xg.streamlit.app/",
-    # Cinta 3M
-    "https://cinta3m-wnepapp6esbay9pzmy8dgqi.streamlit.app/",
-    # Torque
-    "https://torque-slfubklryxkgpwanza9x3p.streamlit.app/",
-    # Químico (Anclaje)
-    "https://quimico-2pbzdm3zby4da8kzka8nhm.streamlit.app/",
-    # Expansión (Anclaje)
-    "https://expansion-upr2xinenp8sosay8zmqud.streamlit.app/",
-    # Perno / Tornillo
-    "https://pernotornillo-dfxkvxnfnurkgzmnaknsx6.streamlit.app/",
-    # Engine TopGal
-    "https://engine-topgal-kqziwaj4vqugpluyepzban.streamlit.app/",
-    # Ventana
-    "https://ventana-bkswzb7jhr4w8crprwwjb9.streamlit.app/",
-    # Unidades
-    "https://unidades-wehz8ayjfpy6uxlzvf2fb9.streamlit.app/",
+    ("Viento NCh432",        "https://mauricioriquelmea-sys-windload-viento-nch432-lzwdzg.streamlit.app/"),
+    ("Sobrecarga de Uso",    "https://m9plmxftfpszdjvacinftg.streamlit.app/"),
+    ("Nieve / Sismo Sec.",   "https://bjtx5s2rdy5ekuokhjl8v9.streamlit.app/"),
+    ("Mullion",              "https://mullion-atkbmf2cnuqksoxyt8izct.streamlit.app/"),
+    ("Travesaño",            "https://travesano-eusssrykqfvpyngtr9vzpv.streamlit.app/"),
+    ("Silicona Estructural", "https://5m88qekh7gcrydaqy7x6xg.streamlit.app/"),
+    ("Cinta 3M",             "https://cinta3m-wnepapp6esbay9pzmy8dgqi.streamlit.app/"),
+    ("Torque",               "https://torque-slfubklryxkgpwanza9x3p.streamlit.app/"),
+    ("Anclaje Químico",      "https://quimico-2pbzdm3zby4da8kzka8nhm.streamlit.app/"),
+    ("Expansión",            "https://expansion-upr2xinenp8sosay8zmqud.streamlit.app/"),
+    ("Perno / Tornillo",     "https://pernotornillo-dfxkvxnfnurkgzmnaknsx6.streamlit.app/"),
+    ("Engine TopGal",        "https://engine-topgal-kqziwaj4vqugpluyepzban.streamlit.app/"),
+    ("Ventana",              "https://ventana-bkswzb7jhr4w8crprwwjb9.streamlit.app/"),
+    ("Unidades",             "https://unidades-wehz8ayjfpy6uxlzvf2fb9.streamlit.app/"),
+    ("SBT",                  "https://7qmsvcrwsafxzgp8icsncu.streamlit.app/"),
+    ("Grúa / ForkLoad",      "https://jexexkgjqv5hoiys9jx4it.streamlit.app/"),
+    ("Muro de Contención",   "https://murocontencion-jsfrrr5jqijr3kqnmjpadz.streamlit.app/"),
 ]
 
-# ──────────────────────────────────────────────
-#  CONFIGURACIÓN
-# ──────────────────────────────────────────────
 PAGE_TIMEOUT_MS = 60_000
 WAKE_WAIT_MS    = 15_000
 DELAY_MIN_S     = 2.0
 DELAY_MAX_S     = 4.0
 
-SLEEPING_SIGNALS = [
-    "This app has gone to sleep",
-    "Zzzz", "zzzz", "Wake up",
-]
+SLEEPING_SIGNALS = ["This app has gone to sleep", "Zzzz", "zzzz", "Wake up"]
 
 async def wake_single(browser, idx, total, name, url):
     print(f"[{idx:02d}/{total}] {name}")
