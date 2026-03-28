@@ -49,7 +49,7 @@ APPS_URLS = [
      #grua
     "https://jexexkgjqv5hoiys9jx4it.streamlit.app/",
      # muro de contencion
-    "https://https://murocontencion-jsfrrr5jqijr3kqnmjpadz.streamlit.app/",
+    "https://murocontencion-jsfrrr5jqijr3kqnmjpadz.streamlit.app/",
 
 
 ]
